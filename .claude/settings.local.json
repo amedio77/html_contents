@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright-official__browser_navigate",
+      "mcp__playwright-official__browser_take_screenshot",
+      "mcp__playwright-official__browser_click",
+      "mcp__playwright-official__browser_resize",
+      "mcp__playwright-official__browser_evaluate",
+      "mcp__playwright-official__browser_close",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

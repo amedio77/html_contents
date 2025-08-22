@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>퀴즈</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#212529" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <main id="app" class="container" aria-live="polite"></main>
+  <template id="tpl-intro">
+    <section class="intro" role="region" aria-labelledby="intro-title">
+      <h1 id="intro-title" class="title"></h1>
+      <p class="desc"></p>
+      <div class="intro-actions">
+        <button class="btn btn-lg" data-role="start" data-target="youth">
+          <img src="assets/icon-youth.svg" alt="청소년"/><span>청소년용 테스트</span>
+        </button>
+        <button class="btn btn-lg" data-role="start" data-target="adult">
+          <img src="assets/icon-adult.svg" alt="성인"/><span>성인용 테스트</span>
+        </button>
+      </div>
+      <p class="helper">버튼을 눌러 시작하세요.</p>
+    </section>
+  </template>
+
+  <template id="tpl-question">
+    <section class="quiz" role="region" aria-labelledby="q-title">
+      <header class="quiz-head">
+        <h2 id="q-title"></h2>
+        <div class="progress" aria-label="진행률"><span class="bar"></span></div>
+      </header>
+      <div class="choices" role="radiogroup" aria-describedby="q-desc"></div>
+      <footer class="quiz-foot">
+        <button class="btn" data-role="next" disabled>다음</button>
+      </footer>
+      <p id="q-desc" class="sr-only">방향키로 이동, 스페이스/엔터로 선택</p>
+      <div class="feedback" aria-live="polite"></div>
+    </section>
+  </template>
+
+  <template id="tpl-result">
+    <section class="result" role="region" aria-labelledby="result-title">
+      <h2 id="result-title">나의 투자성향</h2>
+      <p class="result-band"></p>
+      <p class="result-desc"></p>
+      <div class="score"></div>
+      <div class="cta"></div>
+    </section>
+  </template>
+
+  <audio id="sfx-select" src="assets/bubble-pop-06-351337.MP3" preload="auto"></audio>
+  <audio id="sfx-next" src="assets/ui-sounds-pack-2-sound-4-358895.MP3" preload="auto"></audio>
+  <audio id="sfx-intro" src="assets/new-notification-09-352705.MP3" preload="auto"></audio>
+  <audio id="sfx-result" src="assets/decidemp3-14575.MP3" preload="auto"></audio>
+  <!-- 당신의 본문 그대로 -->
+  <main id="app" class="container" aria-live="polite"></main>
+
+  <!-- (선택) 브라우저에서 바로 열었을 때 첫 터치로 풀스크린 진입 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tryEnter = () => {
+        const el = document.documentElement;
+        (el.requestFullscreen?.() || el.webkitRequestFullscreen?.() || el.msRequestFullscreen?.());
+        document.removeEventListener("click", tryEnter);
+        document.removeEventListener("touchend", tryEnter);
+      };
+      document.addEventListener("click", tryEnter, { once: true });
+      document.addEventListener("touchend", tryEnter, { once: true });
+    });
+  </script>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="금융위기 인터랙티브 비디오 시스템">
+  <title>금융위기 인터랙티브 비디오</title>
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/style.css">
+  
+  <!-- Custom CSS for 9:16 Layout -->
+  <style>
+    /* ==================== Base Styles ==================== */
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+    
+    /* ==================== 4K UHD 세로형 (2160×3840) 최적화 ==================== */
+    .app-container {
+      width: 100%;
+      height: 100vh;
+      max-width: 2160px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* ==================== Intro Section (기존 스타일 활용) ==================== */
+    .intro_wrap {
+      position: relative; 
+      display: flex; 
+      flex-direction: column; 
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .intro_img {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .intro_img img {
+      width: 100%; 
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .intro_content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .intro_dir {
+      position: relative; 
+      padding: 115px 450px 115px 150px; 
+      background: var(--white); 
+      box-shadow: 20px 4px 20px 0 rgb(0, 0, 0, 0.25);
+      margin-top: auto;
+    }
+    
+    .icon_direction {
+      position: absolute; 
+      top: 50%; 
+      right: 150px; 
+      transform: translate(0, -50%); 
+      width: 300px; 
+      height: 300px; 
+      background: url(./images/icon_direction.png) center no-repeat; 
+      background-size: 100% auto;
+    }
+    
+    .intro_bottom {
+      position: relative;
+      padding-bottom: 300px; 
+      background: url(./images/bg_bottom.png) center bottom no-repeat; 
+      background-size: contain; 
+      z-index: 2;
+    }
+    
+    .intro_bottom ul {
+      display: grid; 
+      grid-template-columns: repeat(3, minmax(0, 1fr)); 
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      background: var(--blue);
+    }
+    
+    .intro_bottom li {
+      position: relative; 
+      min-height: 500px; 
+      padding: 60px; 
+      box-sizing: border-box; 
+      background-image: repeating-linear-gradient(to right, var(--white) 0 10px, transparent 10px 20px), 
+                        repeating-linear-gradient(to bottom, var(--white) 0 10px, transparent 10px 20px); 
+      background-position: right bottom; 
+      background-size: 100% 3px, 1px 100%; 
+      background-repeat: no-repeat; 
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .intro_bottom li:hover {
+      background-color: #3D2927;
+    }
+    
+    .intro_bottom li:nth-child(3n) {
+      background-size: 100% 3px, 0;
+    }
+    
+    .intro_bottom li:nth-last-child(-n+3) {
+      background-size: 0, 1px 100%;
+    }
+    
+    .intro_bottom li:last-child {
+      background-size: 0;
+    }
+    
+    .intro_bottom li p {
+      font-size: 100px; 
+      font-weight: 700; 
+      line-height: 120px; 
+      letter-spacing: -0.9px; 
+      color: var(--white);
+    }
+    
+    .intro_bottom li span {
+      position: relative; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      position: absolute; 
+      bottom: 60px; 
+      right: 60px; 
+      color: #3CB4FF; 
+      font-size: 50px; 
+      font-weight: 700; 
+      letter-spacing: 1px;
+    }
+    
+    .intro_bottom li:hover span:before {
+      position: absolute; 
+      bottom: 0; 
+      left: 74px; 
+      width: calc(100% - 74px); 
+      height: 3px; 
+      background: #3CB4FF; 
+      content: '';
+    }
+    
+    .intro_bottom li [class^="icon"] {
+      width: 64px; 
+      height: 64px; 
+      background-repeat: no-repeat; 
+      background-size: 100% auto; 
+      background-position: center;
+    }
+    
+    .icon_dollar { background-image: url(./images/icon_dollar.png); }
+    .icon_oil { background-image: url(./images/icon_oil.png); }
+    .icon_shock { background-image: url(./images/icon_shock.png); }
+    .icon_trending { background-image: url(./images/icon_trending.png); }
+    .icon_euro { background-image: url(./images/icon_euro.png); }
+    .icon_covid { background-image: url(./images/icon_covid.png); }
+    
+    /* ==================== Modal & Video Player ==================== */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      z-index: 999;
+    }
+    
+    .modal.active {
+      display: block;
+    }
+    
+    .bg_wrap {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      z-index: -1; 
+      overflow: hidden;
+    }
+    
+    .bg_wrap img {
+      width: 100%; 
+      min-height: 100%; 
+      height: 100%; 
+      object-fit: cover;
+    }
+    
+    /* Video Container */
+    .video-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 90%;
+      max-width: 1600px;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+    }
+    
+    .video-container.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    /* Home Button (기존 스타일 유지) */
+    .btn_home {
+      position: absolute; 
+      top: 100px; 
+      right: 150px; 
+      width: 250px; 
+      height: 250px; 
+      border-radius: 50%; 
+      box-shadow: 0 0 40px 0 rgb(140, 130, 109, 0.28); 
+      background: #fff url(./images/btn_home.png) center no-repeat; 
+      background-size: 100% auto; 
+      text-indent: -9999px;
+      cursor: pointer;
+      z-index: 1001;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .btn_home:hover {
+      background-image: url(./images/btn_home_on.png);
+      transform: scale(1.1);
+    }
+    
+    /* ==================== Popup Overlay (modal.html 스타일) ==================== */
+    .popup_overlay {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0, 0, 0, 0.6); 
+      display: none; 
+      justify-content: center; 
+      align-items: flex-end; 
+      z-index: 2000;
+      padding-bottom: 100px;
+    }
+    
+    .popup_overlay.active {
+      display: flex;
+    }
+    
+    .popup {
+      position: relative; 
+      top: 0; 
+      background: var(--white); 
+      padding: 200px 185px 150px; 
+      width: calc(100% - 960px); 
+      max-width: 90%;
+      min-width: 800px;
+    }
+    
+    .popup .close_btn {
+      position: absolute; 
+      top: 80px; 
+      right: 80px; 
+      width: 50px; 
+      height: 50px; 
+      background: url(./images/btn_close.png) center no-repeat; 
+      background-size: 100% auto; 
+      text-indent: -9999px;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .popup .h_02 {
+      font-size: 60px;
+      font-weight: bold;
+      letter-spacing: -0.9px; 
+      color: #413430; 
+      line-height: 1.48;
+      text-align: center;
+    }
+    
+    .popup_footer {
+      display: flex; 
+      align-items: center; 
+      gap: 30px; 
+      margin-top: 170px;
+    }
+    
+    .popup_footer button {
+      flex: 1; 
+      height: 100px; 
+      font-size: 40px; 
+      border-radius: 3px; 
+      border-width: 3px; 
+      letter-spacing: 0;
+      cursor: pointer;
+    }
+    
+    /* ==================== Animations ==================== */
+    @keyframes scaleIn {
+      from {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes scaleOut {
+      from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    
+    /* ==================== 4K UHD 세로형 (2160×3840) ==================== */
+    @media screen and (min-width: 2160px) and (min-height: 3840px) and (orientation: portrait) {
+      .app-container {
+        width: 2160px;
+        height: 3840px;
+      }
+      
+      .intro_dir {
+        padding: 200px 600px 200px 250px;
+      }
+      
+      .intro_dir p.h_02cDGray {
+        font-size: 120px;
+        line-height: 1.4;
+      }
+      
+      .intro_dir p.tbtn_01cDGray {
+        font-size: 80px;
+        margin-top: 40px;
+      }
+      
+      .icon_direction {
+        width: 500px;
+        height: 500px;
+        right: 250px;
+      }
+      
+      .intro_bottom {
+        padding-bottom: 500px;
+      }
+      
+      .intro_bottom ul {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+        height: 1400px !important;
+        max-height: none !important;
+        grid-gap: 0 !important;
+        grid-auto-flow: row !important;
+        overflow: visible !important;
+      }
+      
+      .intro_bottom li {
+        min-height: 700px !important;
+        max-height: 700px !important;
+        height: 700px !important;
+        padding: 100px;
+        box-sizing: border-box !important;
+      }
+      
+      .intro_bottom li p {
+        font-size: 140px;
+        line-height: 160px;
+      }
+      
+      .intro_bottom li span {
+        font-size: 70px;
+        bottom: 100px;
+        right: 100px;
+      }
+      
+      .intro_bottom li [class^="icon"] {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .btn_home {
+        width: 350px;
+        height: 350px;
+        top: 200px;
+        right: 250px;
+      }
+      
+      .popup {
+        top: 0;
+        padding: 300px 250px 200px;
+        width: calc(100% - 1200px);
+      }
+      
+      .popup .h_02 {
+        font-size: 100px;
+      }
+      
+      .popup_footer button {
+        height: 150px;
+        font-size: 60px;
+      }
+      
+      .popup .close_btn {
+        width: 80px;
+        height: 80px;
+        top: 100px;
+        right: 100px;
+      }
+    }
+    
+    /* ==================== 세로형 화면 (9:16) - 4K 제외 ==================== */
+    @media screen and (orientation: portrait) and (max-aspect-ratio: 9/16) and (max-width: 2159px) {
+      .intro_dir {
+        padding: 60px 200px 60px 80px;
+      }
+      
+      .intro_dir p {
+        font-size: 40px;
+      }
+      
+      .icon_direction {
+        width: 150px;
+        height: 150px;
+        right: 80px;
+      }
+      
+      .intro_bottom ul {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+      }
+      
+      .intro_bottom li {
+        min-height: 300px;
+        padding: 40px;
+      }
+      
+      .intro_bottom li p {
+        font-size: 60px;
+        line-height: 80px;
+      }
+      
+      .intro_bottom li span {
+        font-size: 30px;
+        bottom: 40px;
+        right: 40px;
+      }
+      
+      .video-container {
+        width: 95%;
+      }
+      
+      .btn_home {
+        width: 120px;
+        height: 120px;
+        top: 50px;
+        right: 50px;
+      }
+      
+      .popup {
+        top: 0;
+        padding: 100px 80px 80px;
+        width: calc(100% - 100px);
+        min-width: auto;
+      }
+      
+      .popup .h_02 {
+        font-size: 36px;
+      }
+      
+      .popup_footer {
+        margin-top: 80px;
+      }
+      
+      .popup_footer button {
+        height: 60px;
+        font-size: 24px;
+      }
+    }
+    
+    /* ==================== 가로형 화면 (16:9) ==================== */
+    @media screen and (orientation: landscape) and (min-aspect-ratio: 16/9) {
+      .intro_dir {
+        padding: 40px 200px 40px 80px;
+      }
+      
+      .intro_bottom {
+        padding-bottom: 100px;
+      }
+      
+      .intro_bottom ul {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+      }
+      
+      .intro_bottom li {
+        min-height: 250px;
+        padding: 30px;
+      }
+      
+      .intro_bottom li p {
+        font-size: 50px;
+        line-height: 60px;
+      }
+      
+      .intro_bottom li span {
+        font-size: 25px;
+        bottom: 30px;
+        right: 30px;
+      }
+      
+      .video-container {
+        width: 80%;
+        max-width: 1200px;
+      }
+      
+      .popup {
+        top: 0;
+        transform: translateY(0);
+        padding: 100px 120px;
+      }
+    }
+    
+    /* Mobile Devices */
+    @media screen and (max-width: 768px) {
+      .intro_dir {
+        padding: 30px 100px 30px 40px;
+      }
+      
+      .intro_dir p {
+        font-size: 20px;
+      }
+      
+      .icon_direction {
+        width: 80px;
+        height: 80px;
+        right: 40px;
+      }
+      
+      .intro_bottom li {
+        min-height: 200px;
+        padding: 20px;
+      }
+      
+      .intro_bottom li p {
+        font-size: 30px;
+        line-height: 40px;
+      }
+      
+      .intro_bottom li span {
+        font-size: 16px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .intro_bottom li [class^="icon"] {
+        width: 32px;
+        height: 32px;
+      }
+      
+      .btn_home {
+        width: 80px;
+        height: 80px;
+        top: 20px;
+        right: 20px;
+      }
+      
+      .popup {
+        top: 0;
+        transform: translateY(0);
+        padding: 60px 40px;
+        width: calc(100% - 40px);
+        min-width: auto;
+      }
+      
+      .popup .h_02 {
+        font-size: 24px;
+      }
+      
+      .popup_footer {
+        margin-top: 40px;
+        gap: 15px;
+      }
+      
+      .popup_footer button {
+        height: 50px;
+        font-size: 18px;
+      }
+      
+      .popup .close_btn {
+        width: 30px;
+        height: 30px;
+        top: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Intro Section -->
+    <div class="intro_wrap" id="introSection">
+      <div class="intro_img">
+        <img src="./images/bg_intro.png" alt="intro 이미지">
+      </div>
+      <div class="intro_content">
+        <div class="intro_dir">
+          <p class="h_02cDGray">세계 경제를 바꾼 역사적 금융위기들을 살펴보세요.</p>
+          <p class="tbtn_01cDGray">아래 위기 중 관심 있는 주제를 선택해보세요.</p>
+          <i class="icon_direction"></i>
+        </div>
+        <div class="intro_bottom">
+          <ul>
+            <li role="button" 
+                tabindex="0" 
+                aria-label="대공황 1929년 영상 보기"
+                data-video="https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4"
+                data-title="대공황">
+              <p>대공황</p>
+              <span><i class="icon_dollar"></i>1929년</span>
+            </li>
+            <li role="button"
+                tabindex="0"
+                aria-label="오일쇼크 1970년대 영상 보기"
+                data-video="https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4"
+                data-title="오일쇼크">
+              <p>오일쇼크</p>
+              <span><i class="icon_oil"></i>1970년대</span>
+            </li>
+            <li role="button"
+                tabindex="0"
+                aria-label="아시아 금융위기 1997년 영상 보기"
+                data-video="https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4"
+                data-title="아시아 금융위기">
+              <p>아시아<br/>금융위기</p>
+              <span><i class="icon_shock"></i>1997년</span>
+            </li>
+            <li role="button"
+                tabindex="0"
+                aria-label="글로벌 금융위기 2008년 영상 보기"
+                data-video="https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4"
+                data-title="글로벌 금융위기">
+              <p>글로벌<br/>금융위기</p>
+              <span><i class="icon_trending"></i>2008년</span>
+            </li>
+            <li role="button"
+                tabindex="0"
+                aria-label="유럽 재정위기 2010년 영상 보기"
+                data-video="https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4"
+                data-title="유럽 재정위기">
+              <p>유럽<br/>재정위기</p>
+              <span><i class="icon_euro"></i>2010년</span>
+            </li>
+            <li role="button"
+                tabindex="0"
+                aria-label="COVID-19 경제위기 2020년 영상 보기"
+                data-video="https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4"
+                data-title="COVID-19 경제위기">
+              <p>COVID-19<br/>경제위기</p>
+              <span><i class="icon_covid"></i>2020년</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal Player -->
+    <div class="modal" id="modalSection">
+      <div class="bg_wrap">
+        <img src="./images/bg_modal.jpg" alt="배경이미지">
+      </div>
+      <button type="button" class="btn_home" id="btnHome">홈으로</button>
+      
+      <div class="video-container" id="videoContainer">
+        <video id="videoPlayer" 
+               controls="false"
+               autoplay
+               muted
+               playsinline>
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    
+    <!-- Popup Overlay (홈 버튼 클릭 시 확인) -->
+    <div class="popup_overlay" id="popupOverlay">
+      <div class="popup">
+        <button type="button" class="close_btn" id="closePopup">닫기</button>
+        <p class="h_02">영상 보기를 그만하고<br/>처음 화면으로 돌아가시겠습니까?</p>
+        
+        <div class="popup_footer">
+          <button type="button" class="btn_bgDark" id="confirmYes">네</button>
+          <button type="button" class="btn_lineDGray" id="confirmNo">아니오</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Audio Element -->
+  <audio id="notificationSound" preload="auto">
+    <source src="./mp3/system-notification-199277.mp3" type="audio/mpeg">
+  </audio>
+  
+  <!-- Main Application Script -->
+  <script>
+    // ==================== Configuration ====================
+    const APP_CONFIG = {
+      // 각 카드별 영상 매핑 (현재 모두 PC_01.mp4로 통일)
+      videos: {
+        '대공황': 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4',
+        '오일쇼크': 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4',
+        '아시아금융위기': 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4',
+        '글로벌금융위기': 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4',
+        '유럽재정위기': 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4',
+        'COVID-19경제위기': 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4'
+      },
+      returnDelay: 5000, // 5 seconds
+      defaultVideo: 'https://dtv7sgso8229.edge.naverncp.com/KCIE/MP4/202507_youth/PC_01.mp4'
+    };
+    
+    // ==================== Global Variables ====================
+    let currentVideo = null;
+    let returnTimer = null;
+    
+    // ==================== DOM Elements ====================
+    const elements = {
+      introSection: document.getElementById('introSection'),
+      modalSection: document.getElementById('modalSection'),
+      videoContainer: document.getElementById('videoContainer'),
+      videoPlayer: document.getElementById('videoPlayer'),
+      btnHome: document.getElementById('btnHome'),
+      notificationSound: document.getElementById('notificationSound'),
+      crisisCards: document.querySelectorAll('.intro_bottom li'),
+      popupOverlay: document.getElementById('popupOverlay'),
+      closePopup: document.getElementById('closePopup'),
+      confirmYes: document.getElementById('confirmYes'),
+      confirmNo: document.getElementById('confirmNo')
+    };
+    
+    // ==================== Video Player Manager ====================
+    class VideoPlayerManager {
+      constructor() {
+        this.video = elements.videoPlayer;
+        this.setupEventListeners();
+      }
+      
+      setupEventListeners() {
+        // Video ended event
+        this.video.addEventListener('ended', () => {
+          console.log('[Video] Ended');
+          this.handleVideoEnd();
+        });
+        
+        // Video error event
+        this.video.addEventListener('error', (e) => {
+          console.error('[Video] Error:', e);
+          this.handleError();
+        });
+        
+        // Video can play event
+        this.video.addEventListener('canplay', () => {
+          console.log('[Video] Can play');
+        });
+        
+        // Video playing event
+        this.video.addEventListener('playing', () => {
+          console.log('[Video] Playing');
+        });
+      }
+      
+      loadVideo(videoUrl) {
+        console.log('[Video] Loading:', videoUrl);
+        this.video.src = videoUrl;
+        this.video.load();
+      }
+      
+      play() {
+        // Ensure video is muted for autoplay
+        this.video.muted = true;
+        
+        // Try to play
+        const playPromise = this.video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('[Video] Playing successfully');
+              // Remove controls after starting
+              this.video.controls = false;
+            })
+            .catch(error => {
+              console.error('[Video] Play failed:', error);
+              // Show controls if autoplay fails
+              this.video.controls = true;
+            });
+        }
+      }
+      
+      stop() {
+        this.video.pause();
+        this.video.currentTime = 0;
+      }
+      
+      handleVideoEnd() {
+        console.log('[Video] Starting return timer');
+        clearReturnTimer();
+        returnTimer = setTimeout(() => {
+          returnToIntro();
+        }, APP_CONFIG.returnDelay);
+      }
+      
+      handleError() {
+        alert('비디오를 재생할 수 없습니다.');
+        returnToIntro();
+      }
+    }
+    
+    // ==================== Modal Controller ====================
+    class ModalController {
+      show() {
+        // Hide intro
+        elements.introSection.style.display = 'none';
+        
+        // Show modal
+        elements.modalSection.classList.add('active');
+        
+        // Animate video container
+        setTimeout(() => {
+          elements.videoContainer.classList.add('active');
+        }, 100);
+      }
+      
+      hide() {
+        // Start hide animation
+        elements.videoContainer.style.animation = 'scaleOut 0.3s ease-in forwards';
+        
+        setTimeout(() => {
+          // Hide modal
+          elements.modalSection.classList.remove('active');
+          elements.videoContainer.classList.remove('active');
+          elements.videoContainer.style.animation = '';
+          
+          // Show intro
+          elements.introSection.style.display = 'block';
+        }, 300);
+      }
+    }
+    
+    // ==================== Popup Controller ====================
+    class PopupController {
+      show() {
+        elements.popupOverlay.classList.add('active');
+      }
+      
+      hide() {
+        elements.popupOverlay.classList.remove('active');
+      }
+    }
+    
+    // ==================== Audio Manager ====================
+    class AudioManager {
+      constructor() {
+        this.sound = elements.notificationSound;
+      }
+      
+      async playNotification() {
+        try {
+          await this.sound.play();
+        } catch (error) {
+          console.error('[Audio] Play failed:', error);
+        }
+      }
+      
+      preload() {
+        this.sound.load();
+      }
+    }
+    
+    // ==================== Initialize Managers ====================
+    const videoManager = new VideoPlayerManager();
+    const modalController = new ModalController();
+    const popupController = new PopupController();
+    const audioManager = new AudioManager();
+    
+    // ==================== Event Handlers ====================
+    function handleCardClick(event) {
+      const card = event.currentTarget;
+      const videoUrl = card.dataset.video;
+      const title = card.dataset.title;
+      
+      if (!videoUrl) {
+        console.error('[App] No video URL found');
+        return;
+      }
+      
+      console.log('[App] Opening video:', title, videoUrl);
+      
+      // Clear any existing timer
+      clearReturnTimer();
+      
+      // Set current video
+      currentVideo = videoUrl;
+      
+      // Show modal
+      modalController.show();
+      
+      // Load and play video
+      videoManager.loadVideo(videoUrl);
+      
+      // Start playing after a short delay
+      setTimeout(() => {
+        videoManager.play();
+      }, 500);
+    }
+    
+    // 홈 버튼 클릭 시 확인 팝업 표시
+    function handleHomeClick() {
+      console.log('[App] Home button clicked - showing confirmation');
+      popupController.show();
+    }
+    
+    // 팝업에서 "네" 클릭 시
+    async function handleConfirmYes() {
+      console.log('[App] Confirmed - returning to intro');
+      
+      // Hide popup
+      popupController.hide();
+      
+      // Play notification sound
+      await audioManager.playNotification();
+      
+      // Stop video
+      videoManager.stop();
+      
+      // Clear timer
+      clearReturnTimer();
+      
+      // Return to intro
+      returnToIntro();
+    }
+    
+    // 팝업에서 "아니오" 클릭 시
+    function handleConfirmNo() {
+      console.log('[App] Cancelled - continuing video');
+      popupController.hide();
+    }
+    
+    // 영상 바깥 영역 클릭 시
+    function handleModalClick(event) {
+      // 비디오 컨테이너 외부 클릭 확인
+      if (event.target === elements.modalSection || 
+          event.target === elements.modalSection.querySelector('.bg_wrap') ||
+          event.target === elements.modalSection.querySelector('.bg_wrap img')) {
+        console.log('[App] Clicked outside video - showing confirmation');
+        popupController.show();
+      }
+    }
+    
+    function returnToIntro() {
+      console.log('[App] Returning to intro');
+      
+      // Hide modal
+      modalController.hide();
+      
+      // Clear video
+      currentVideo = null;
+      videoManager.stop();
+      
+      // Clear timer
+      clearReturnTimer();
+    }
+    
+    function clearReturnTimer() {
+      if (returnTimer) {
+        clearTimeout(returnTimer);
+        returnTimer = null;
+      }
+    }
+    
+    function handleKeyboard(event) {
+      // Escape key - show confirmation popup
+      if (event.key === 'Escape' && elements.modalSection.classList.contains('active')) {
+        popupController.show();
+      }
+      
+      // Enter key on card
+      if (event.key === 'Enter' && event.target.tagName === 'LI') {
+        handleCardClick(event);
+      }
+    }
+    
+    // ==================== Initialize Application ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('[App] Initializing');
+      
+      // Preload audio
+      audioManager.preload();
+      
+      // Card click events
+      elements.crisisCards.forEach(card => {
+        card.addEventListener('click', handleCardClick);
+        card.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            handleCardClick(e);
+          }
+        });
+      });
+      
+      // Home button click - show confirmation popup
+      elements.btnHome.addEventListener('click', handleHomeClick);
+      
+      // Modal background click - show confirmation popup
+      elements.modalSection.addEventListener('click', handleModalClick);
+      
+      // Popup events
+      elements.closePopup.addEventListener('click', () => popupController.hide());
+      elements.confirmYes.addEventListener('click', handleConfirmYes);
+      elements.confirmNo.addEventListener('click', handleConfirmNo);
+      
+      // Popup overlay click (outside popup)
+      elements.popupOverlay.addEventListener('click', (e) => {
+        if (e.target === elements.popupOverlay) {
+          popupController.hide();
+        }
+      });
+      
+      // Keyboard events
+      document.addEventListener('keydown', handleKeyboard);
+      
+      // Prevent zoom on double tap (mobile)
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', (e) => {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+          e.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+      
+      // Handle orientation change
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 100);
+      });
+      
+      console.log('[App] Ready');
+    });
+    
+    // ==================== Debug Mode ====================
+    const DEBUG_MODE = false;
+    if (DEBUG_MODE) {
+      window.app = {
+        videoManager,
+        modalController,
+        popupController,
+        audioManager,
+        elements,
+        config: APP_CONFIG
+      };
+    }
+  </script>
+</body>
+</html>

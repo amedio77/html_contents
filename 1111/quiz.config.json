@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "title": "투자성향 진단 테스트",
+    "intro": {"description": "청소년/성인 중 하나를 선택해 테스트를 진행하세요."},
+    "shuffleQuestions": false,
+    "shuffleChoices": false,
+    "showPerQuestionFeedback": false,
+    "showCorrectAnswerAfterSelect": false,
+    "requireAnswerToProceed": true,
+    "persistProgress": false,
+    "ui": {"theme": "light", "primaryColor": "#0a84ff"},
+    "sounds": {
+      "enabled": true,
+      "select": "assets/bubble-pop-06-351337.mp3",
+      "next": "assets/ui-sounds-pack-2-sound-4-358895.mp3",
+      "result": "assets/decidemp3-14575.mp3",
+      "intro": "assets/new-notification-09-352705.mp3"
+    }
+  },
+  "questions": [
+    {"id":"q1","number":1,"text":"투자에 대해 가장 가까운 태도는?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"원금 손실은 절대 싫다","score":1,"isCorrect":false},
+      {"id":"b","text":"소폭 손실은 감수 가능","score":2,"isCorrect":false},
+      {"id":"c","text":"수익 위해 손실도 감수","score":3,"isCorrect":false},
+      {"id":"d","text":"고위험-고수익 선호","score":4,"isCorrect":false}
+    ]},
+    {"id":"q2","number":2,"text":"목표 투자 기간은?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"6개월 이내","score":1},
+      {"id":"b","text":"1~3년","score":2},
+      {"id":"c","text":"3~5년","score":3},
+      {"id":"d","text":"5년 이상","score":4}
+    ]},
+    {"id":"q3","number":3,"text":"가격 변동을 보면 나는?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"불안해서 매도","score":1},
+      {"id":"b","text":"관망","score":2},
+      {"id":"c","text":"분할매수 검토","score":3},
+      {"id":"d","text":"추가 매수","score":4}
+    ]},
+    {"id":"q4","number":4,"text":"분산투자에 대한 생각은?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"복잡해서 안 함","score":1},
+      {"id":"b","text":"필요하면 일부","score":2},
+      {"id":"c","text":"기본적으로 함","score":3},
+      {"id":"d","text":"섹터/지역까지 분산","score":4}
+    ]},
+    {"id":"q5","number":5,"text":"손실 -5% 시 행동은?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"즉시 정리","score":1},
+      {"id":"b","text":"손절 고려","score":2},
+      {"id":"c","text":"보유/관망","score":3},
+      {"id":"d","text":"추매 고려","score":4}
+    ]},
+    {"id":"q6","number":6,"text":"금리 상승기에 선호 자산?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"예금/적금","score":1},
+      {"id":"b","text":"채권/MMF","score":2},
+      {"id":"c","text":"배당주/리츠","score":3},
+      {"id":"d","text":"성장주/ETF","score":4}
+    ]},
+    {"id":"q7","number":7,"text":"한 번에 투자 가능한 금액은?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"소액만 가능","score":1},
+      {"id":"b","text":"월 고정액","score":2},
+      {"id":"c","text":"여유자금 일부","score":3},
+      {"id":"d","text":"상당 금액","score":4}
+    ]},
+    {"id":"q8","number":8,"text":"정보 수집 습관은?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"주변 말 위주","score":1},
+      {"id":"b","text":"뉴스/브리핑","score":2},
+      {"id":"c","text":"리포트/데이터","score":3},
+      {"id":"d","text":"직접 모델링/백테스트","score":4}
+    ]},
+    {"id":"q9","number":9,"text":"파생/레버리지 상품에 대한 생각은?","tracks":["adult"],"choices":[
+      {"id":"a","text":"관심 없음","score":1},
+      {"id":"b","text":"학습 후 일부","score":2},
+      {"id":"c","text":"적극 활용","score":3},
+      {"id":"d","text":"전략 핵심","score":4}
+    ]},
+    {"id":"q10","number":10,"text":"목표 수익률(연) 기대는?","tracks":["adult","youth"],"choices":[
+      {"id":"a","text":"2% 내외","score":1},
+      {"id":"b","text":"5% 내외","score":2},
+      {"id":"c","text":"10% 내외","score":3},
+      {"id":"d","text":"15%+","score":4}
+    ]}
+  ],
+  "scoring": {
+    "mode": "sum",
+    "resultBands": [
+      {"min": 10, "max": 17, "label": "안전 우선형", "description": "위험 최소화, 예금/적금 중심으로 안정 추구"},
+      {"min": 18, "max": 25, "label": "안전 추구형", "description": "저위험/중저위험 상품 위주, 안정적 성장"},
+      {"min": 26, "max": 33, "label": "위험 중립형", "description": "분산투자 기반 중위험·중수익"},
+      {"min": 34, "max": 40, "label": "적극 투자형", "description": "성장주·ETF 등 고위험 허용"}
+    ],
+    "showRawScore": true,
+    "showPercentage": true
+  },
+  "resultPage": {
+    "showAnswerKey": false,
+    "showExplanations": true,
+    "cta": [
+      {"label": "다시 테스트", "action": "restart"},
+      {"label": "홈으로", "action": "home", "url": "./index.html"}
+    ]
+  }
+}

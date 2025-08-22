@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/style_spa.css">
+  <title>투자성향 진단 테스트</title>
+</head>
+<body>
+  <!-- 음향 컨트롤 UI -->
+  <div id="audio-controls">
+    <button id="audio-toggle" onclick="audioManager.toggle()" title="음향 켜기/끄기">🔊</button>
+  </div>
+
+  <div id="app">
+    <!-- Gate 1: 시작 화면 -->
+    <div id="gate1" class="screen" style="display: none;">
+      <div class="layout_center">
+        <div class="bg_wrap">
+          <img src="./images/bg_gate_1.png" alt="배경이미지">
+        </div>
+        <h1 class="h_01cWhite">나의 투자 성향은?</h1>
+        <button type="button" class="btn_bgPrimary_lg" onclick="app.navigate('gate2')">
+          투자 성향 진단 테스트<i class="icon_arrow_double"></i><span class="lato">GO</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gate 2: 청소년/성인 선택 -->
+    <div id="gate2" class="screen" style="display: none;">
+      <div class="content">
+        <div class="bg_wrap">
+          <img src="./images/bg_gate_2.png" alt="배경이미지">
+        </div>
+        <div class="cont_tit">
+          <i class="icon_play"></i>
+          <h4 class="cGray">투자성향 진단 테스트</h4>
+        </div>
+        <div class="cont_inner">
+          <div class="info_w flex_col_sm">
+            <p class="body_01_cDGray">본인에게 해당하는 항목을 선택하여</p>
+            <p class="h_02_cDGray">투자 성향 테스트를 시작해보세요.</p>
+          </div>
+          <div class="option_wrap">
+            <div>
+              <i class="icon_child"></i>
+              <button type="button" class="btn_bgPrimary_lg" onclick="app.startQuiz('youth')">
+                청소년용<span>(만 19세 이하)</span>
+              </button>
+            </div>
+            <div>
+              <i class="icon_adult"></i>
+              <button type="button" class="btn_linePrimary_lg" onclick="app.startQuiz('adult')">
+                성인용<span>(만 20세 이상)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz: 퀴즈 화면 -->
+    <div id="quiz" class="screen" style="display: none;">
+      <div class="content">
+        <div class="bg_wrap">
+          <img src="./images/bg_test.png" alt="배경이미지">
+        </div>
+        <div class="cont_tit">
+          <i class="icon_play"></i>
+          <h4 class="cGray">투자성향 진단 테스트</h4>
+        </div>
+        <div class="cont_inner">
+          <div class="q_wrap">
+            <div class="q_head">
+              <div class="align_flex_between">
+                <div class="align_flex">
+                  <p id="question-progress" class="guide_01cDGray">질문 01 / 10</p>
+                  <i class="icon_paper"></i>
+                </div>
+                <button type="button" class="btn_linePrimary" onclick="app.navigate('gate1')">처음으로</button>
+              </div>
+              <h4 id="question-text" class="h_02cPrimary"></h4>
+            </div>
+            <div class="q_inner">
+              <div id="question-choices" class="radioGroup_col">
+                <!-- 동적으로 생성될 선택지들 -->
+              </div>
+            </div>
+            <div class="btnGroup_space">
+              <button id="btn-prev" type="button" class="btn_lineLGray" onclick="app.prevQuestion()" style="visibility: hidden;">이전</button>
+              <button id="btn-next" type="button" class="btn_bgPrimary" onclick="app.nextQuestion()" disabled>다음</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result: 결과 화면 -->
+    <div id="result" class="screen" style="display: none;">
+      <div class="content">
+        <div id="result-content" class="layout_split">
+          <!-- 동적으로 생성될 결과 내용 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentors: 멘토 목록 화면 -->
+    <div id="mentors" class="screen" style="display: none;">
+      <div class="content">
+        <div class="cont_tit">
+          <i class="icon_play"></i>
+          <h4 class="cGray">투자 멘토</h4>
+        </div>
+        <div class="cont_inner">
+          <div class="m_wrap">
+            <div class="align_flex">
+              <h4 class="h_02cDGray">금융투자 멘토 조언</h4>
+              <p class="body_01cPrimary">어떤 투자자의 조언이 궁금하세요?</p>
+            </div>
+            <ul id="mentor-list" class="card_lists">
+              <!-- 동적으로 생성될 멘토 목록 -->
+            </ul>
+            <div class="btnGroup_center">
+              <button type="button" class="btn_bgPrimary" onclick="app.navigate('gate1')">처음으로</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentoring: 멘토링 상세 화면 -->
+    <div id="mentoring" class="screen" style="display: none;">
+      <div class="content">
+        <div id="mentoring-content">
+          <!-- 동적으로 생성될 멘토링 내용 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 풀스크린 스크립트 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tryEnter = () => {
+        const el = document.documentElement;
+        (el.requestFullscreen?.() || el.webkitRequestFullscreen?.() || el.msRequestFullscreen?.());
+        document.removeEventListener("click", tryEnter);
+        document.removeEventListener("touchend", tryEnter);
+      };
+      document.addEventListener("click", tryEnter, { once: true });
+      document.addEventListener("touchend", tryEnter, { once: true });
+    });
+  </script>
+  
+  <script src="config.js"></script>
+  <script src="audio-manager.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
