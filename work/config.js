@@ -228,12 +228,12 @@ const CONFIG = {
       maxScore: 17,
       userType: 'youth',
       bgClass: '',
-      description: '느리지만 안전하게 가는 거북이처럼! <span class="cSecondary">안전한 투자</span>를 좋아해요.<br/>장점은 돈을 잃을 위험이 적지만, 너무 안전만 추구하면 돈을 불리는데 시간이 오래 걸릴 수 있어요. <span class="cSecondary">은행 예금, 적금부터 시작</span>해서 <span class="cSecondary">원금 보장 상품 위주로 투자를 시작</span>할 수 있어요.',
+      description: '느리지만 안전하게 가는 거북이처럼! <span class="cSecondary">안전한 투자</span>를 좋아해요.<br/>장점은 돈을 잃을 위험이 적지만, 너무 안전만 추구하면 돈을 불리는데 시간이 오래 걸릴 수 있어요.<br/><span class="cSecondary">은행 예금, 적금부터 시작</span>해서 <span class="cSecondary">원금 보장 상품 위주로 투자를 시작</span>할 수 있어요.',
       mentor: {
         name: '벤저민 그레이엄',
         tag: '#가치투자의 아버지<br/>#월가의 스승',
         image: 'profile_1.png',
-        quote: '나는 대공황을 겪으면서 깨달았네.<br/>이 시장은 언제든 흔들릴 수 있지. 그래서 나는 항상 <span class="underline">"안전마진"</span>을 확보하지 않으면 절대 투자하지 않았다네.<br/>시장이 불확실할수록 방어적인 자산을 담고, 주가가 아닌 "가치"를 보게나.'
+        quote: '나는 대공황을 겪으면서 깨달았네.<br/>이 시장은 언제든 흔들릴 수 있지. 그래서 나는 항상 <span class="underline">"안전마진"을 확보하지 않으면 절대 투자하지 않았다네.</span><br/>시장이 불확실할수록 방어적인 자산을 담고, 주가가 아닌 "가치"를 보게나.'
       }
     },
     2: {
@@ -242,12 +242,12 @@ const CONFIG = {
       maxScore: 25,
       userType: 'youth',
       bgClass: '',
-      description: '조심스럽지만 꾸준히 앞으로 가는 토끼처럼! 안전하면서도 조금씩 돈을 늘리고 싶어 해요. 장점은 안전하면서도 꾸준히 조금씩 돈이 늘어나요.<br/>하지만 가끔은 용기를 내는 것도 필요해요. <span class="cSecondary">안전한 펀드에 소액 투자부터 시작</span>할 수 있어요. <span class="cSecondary">소액 투자를 하며 투자 기본 지식과 경험을 쌓을 수 있어요.</span>',
+      description: '조심스럽지만 꾸준히 앞으로 가는 토끼처럼! 안전하면서도 조금씩 돈을 늘리고 싶어 해요.<br/>장점은 안전하면서도 꾸준히 조금씩 돈이 늘어나요. 하지만 가끔은 용기를 내는 것도 필요해요. <span class="cSecondary">안전한 펀드에 소액 투자부터 시작</span>할 수 있어요. <span class="cSecondary">소액 투자를 하며 투자 기본 지식과 경험을 쌓을 수 있어요.</span>',
       mentor: {
         name: '워런 버핏',
-        tag: '#장기투자의 신<br/>#오마하의 현인',
+        tag: '#오마하의 현인이자 장기투자자의 롤모델<br/>#미국 청년들에게 가장 존경받는 투자자',
         image: 'profile_3.png',
-        quote: '내가 코카콜라를 샀을 때도, 당장 오르길 기대하지 않았지. 하지만 난 이 회사를 10년 후에도 사랑할 자신이 있었네.<br/><span class="underline">좋은 회사를 좋은 가격에 사서 오래 들고 가는 것</span>,<br/>그게 가장 안전하고도 강한 전략이야.'
+        quote: '내가 코카콜라를 샀을 때도, 당장 오르길 기대하지 않았지. 하지만 난 이 회사를 10년 후에도 사랑할 자신이 있었네.<br/><span class="underline">좋은 회사를 좋은 가격에 사서 오래 들고 가는 것,<br/>그게 가장 안전하고도 강한 전략이야.</span>'
       }
     },
     3: {
@@ -256,12 +256,12 @@ const CONFIG = {
       maxScore: 33,
       userType: 'youth',
       bgClass: '',
-      description: '높이 날면서도 균형을 잡는 독수리처럼! <span class="cSecondary">적당한 위험을 감수</span>할 수 있어요.<br/>장점은 <span class="cSecondary">위험과 안전 사이에서 균형</span>을 잘 맞출 수 있어요. 하지만 너무 욕심을 내지 않게 주의해야 해요. <span class="cSecondary">주식형 펀드와 채권을 섞어서 투자</span>해 보세요.<br/>투자에 관한 뉴스를 정기적으로 보면 도움이 됩니다.',
+      description: '높이 날면서도 균형을 잡는 독수리처럼! <span class="cSecondary">적당한 위험을 감수</span>할 수 있어요.<br/>장점은 <span class="cSecondary">위험과 안전 사이에서 균형</span>을 잘 맞출 수 있어요. 하지만 너무 욕심을 내지 않게 주의해야 해요.<br/><span class="cSecondary">주식형 펀드와 채권을 섞어서 투자</span>해 보세요. 투자에 관한 뉴스를 정기적으로 보면 도움이 됩니다.',
       mentor: {
         name: '피터 린치',
         tag: '#월가의 영웅<br/>#월가를 이긴 전설의 펀드매니저',
         image: 'profile_4.png',
-        quote: '나는 슈퍼마켓에서 아이들이 뭘 사는지 보면서 투자 아이디어를 얻었다네.<br/>투자란, <span class="underline">내 일상에서 발견한 성장의 단서</span>를 믿는 일이야.<br/>내가 이해하고 공감할 수 있는 기업에 투자하되, 숫자로도 꼭 검증하게.'
+        quote: '나는 슈퍼마켓에서 아이들이 뭘 사는지 보면서 투자 아이디어를 얻었다네.<br/>투자란, <span class="underline">내 일상에서 발견한 성장의 단서를 믿는 일이야.</span><br/>내가 이해하고 공감할 수 있는 기업에 투자하되, 숫자로도 꼭 검증하게.'
       }
     },
     4: {
@@ -270,12 +270,12 @@ const CONFIG = {
       maxScore: 40,
       userType: 'youth',
       bgClass: '',
-      description: '용감하게 도전하는 사자처럼! <span class="cSecondary">위험을 감수하고 큰 수익을 원해요.</span><br/>장점은 큰 수익을 얻을 수 있어요.<br/>하지만 손실도 크게 생길 수 있으니 조심하세요. <span class="cSecondary">신중하게 주식 투자에 도전</span>해 보세요. 투자 공부와 함께 <span class="cSecondary">위험 관리 방법도 알아두셔야</span> 합니다.',
+      description: '용감하게 도전하는 사자처럼! <span class="cSecondary">위험을 감수하고 큰 수익을 원해요.</span><br/>장점은 큰 수익을 얻을 수 있어요. 하지만 손실도 크게 생길 수 있으니 조심하세요. <span class="cSecondary">신중하게 주식 투자에 도전</span>해 보세요. 투자 공부와 함께 <span class="cSecondary">위험 관리 방법도 알아두셔야</span> 합니다.',
       mentor: {
         name: '조지 소로스',
         tag: '#공격적 매도자의 전설',
         image: 'profile_5.png',
-        quote: '나는 틀릴 수도 있다는 걸 인정했기에 성공했네.<br/><span class="underline">시장이 내 예상과 다르면</span>, 즉시 포지션을 수정했지.<br/>용기 있게 베팅하되, 자신의 실수를 빨리 인정할 줄 알아야 진짜 강한 투자자가 되는 거야.'
+        quote: '나는 틀릴 수도 있다는 걸 인정했기에 성공했네.<br/>시장이 내 예상과 다르면, 즉시 포지션을 수정했지.<br/>용기 있게 베팅하되, <span class="underline">자신의 실수를 빨리 인정할 줄 알아야</span> 진짜 강한 투자자가 되는 거야.'
       }
     },
     
@@ -286,7 +286,7 @@ const CONFIG = {
       maxScore: 17,
       userType: 'adult',
       bgClass: 'bg_ter2',
-      description: '손실을 극도로 꺼리고 <span class="underline">투자금 보전을 최우선</span>으로 생각하시는군요.<br/>투자 경험이 거의 없거나 투자에 대한 자신감과 정보가 부족한 상태입니다.<br/>투자 비중보다는 <span class="cSecondary">저축 및 금융 안전망 확보</span>가 먼저 이루어져야 하므로<br/><span class="underline"><span class="cSecondary">정기예금, MMF, 국채 또는 원금 보장형 ELS, ISA 등을 추천</span></span>합니다.',
+      description: '손실을 극도로 꺼리고 투자금 보전을 최우선으로 생각하시는군요.<br/>투자 경험이 거의 없거나 투자에 대한 자신감과 정보가 부족한 상태입니다.<br/>투자 비중보다는 저축 및 금융 안전망 확보가 먼저 이루어져야 하므로 <span class="underline"><span class="cSecondary">정기예금, MMF, 국채 또는 원금 보장형 ELS, ISA 등을 추천</span></span>합니다.',
       mentor: {
         name: '벤저민 그레이엄',
         tag: '#가치투자의 아버지<br/>#월가의 스승',
@@ -300,12 +300,12 @@ const CONFIG = {
       maxScore: 25,
       userType: 'adult',
       bgClass: 'bg_ter2',
-      description: '손실 가능성은 우려하지만 일정 수준의 수익도 기대하시는군요.<br/><span class="cSecondary">투자에 대해 학습 의지</span>가 있으며 <span class="cSecondary">자산 배분의 중요성을 인식</span>하고 있습니다.<br/>분산 투자를 기반으로 한 혼합형 자산 구성을 추천하며, 목표 중심(주택 마련, 자녀 교육 등)의 자산 운용이 이루어져야 합니다. <span class="cSecondary">적합한 상품으로는 채권형 펀드, 안전형 ETF, TDF</span> 등이 있고, <span class="cSecondary">배당주와 우량주 중심으로 포트폴리오를 구성하는 것도 고려해 보시면</span> 좋습니다.',
+      description: '손실 가능성은 우려하지만 일정 수준의 수익도 기대하시는군요.<br/>투자에 대해 학습 의지가 있으며 자산 배분의 중요성을 인식하고 있습니다.<br/>분산 투자를 기반으로 한 혼합형 자산 구성을 추천하며, 목표 중심(주택 마련, 자녀 교육 등)의 자산 운용이 이루어져야 합니다.<br/>적합한 상품으로는 <span class="cSecondary">채권형 펀드, 안전형 ETF, TDF</span> 등이 있고, 배당주와 우량주 중심으로 포트폴리오를 구성하는 것도 고려해 보시면 좋습니다.',
       mentor: {
         name: '존 보글',
         tag: '#인덱스 펀드 창시자<br/>#월가의 성자',
         image: 'profile_2.png',
-        quote: '복잡한 전략은 필요 없습니다.<br/><span class="underline">낮은 비용, 분산된 투자, 그리고 장기 보유가 핵심인 걸 잊지 마세요.</span><br/>너무 빠르게 수익을 추구하지 말고, 꾸준한 지출 통제와 함께 <span class="underline">자동화된 투자 습관을 구축</span>해야 합니다. 이 습관은 지루하지만 강력한 전략이 될 것입니다.'
+        quote: '복잡한 전략은 필요 없습니다.<br/><span class="underline">낮은 비용, 분산된 투자, 그리고 장기 보유가 핵심인 걸 잊지 마세요.</span> 너무 빠르게 수익을 추구하지 말고, 꾸준한 지출 통제와 함께 <span class="underline">자동화된 투자 습관을 구축</span>해야 합니다.<br/>이 습관은 지루하지만 강력한 전략이 될 것입니다.'
       }
     },
     7: {
@@ -314,7 +314,7 @@ const CONFIG = {
       maxScore: 33,
       userType: 'adult',
       bgClass: 'bg_ter2',
-      description: '중장기 자산 증식 목표를 갖고 계시는군요. <span class="cSecondary">수익성과 손실 리스크 사이에서 균형을 잡는 걸 중요</span>하게 생각하고 있습니다.<br/>다양한 자산에 대한 이해와 관리가 가능하므로 <span class="underline"><span class="cSecondary">주식과 채권 비중을 6:4 도는 7:3 정도</span></span> 유지하는 것이 좋습니다. <span class="cSecondary">우량주와 중소형 성장주 혼합 포트폴리오를 추천</span>하며 <span class="cSecondary">글로벌 ETF, 리츠(REITs) 등을 고려</span>해 볼 수 있습니다.',
+      description: '중장기 자산 증식 목표를 갖고 계시는군요. <span class="cSecondary">수익성과 손실 리스크 사이에서 균형을 잡는 걸 중요</span>하게 생각하고 있습니다.<br/>다양한 자산에 대한 이해와 관리가 가능하므로 주식과 채권 비중을 6:4 도는 7:3 정도 유지하는 것이 좋습니다. <span class="cSecondary">우량주와 중소형 성장주 혼합 포트폴리오를 추천</span>하며 <span class="cSecondary">글로벌 ETF, 리츠(REITs) 등을 고려</span>해 볼 수 있습니다.',
       mentor: {
         name: '피터 린치',
         tag: '#월가의 영웅<br/>#월가를 이긴 전설의 펀드매니저',
@@ -328,12 +328,12 @@ const CONFIG = {
       maxScore: 40,
       userType: 'adult',
       bgClass: 'bg_ter2',
-      description: '높은 수익률을 목표로 하며 손실에 대한 내성도 강하시네요.<br/>이미 <span class="cSecondary">투자에 대한 지식과 경험이 풍부</span>해서 시장 흐름을 빠르게 읽고, 과감한 의사결정을 하실 수 있는 기반이 되어 있습니다. 수익률 극대화를 위한 적극적 자산 운용을 추천드립니다. <span class="cSecondary">트렌드 기반의 테마 투자</span> 또는 <span class="cSecondary">글로벌 분산</span> 등을 활용하면서, <span class="cSecondary">리스크 헷징</span>과 <span class="cSecondary">종목 리밸런싱을 병행</span>하는 전략이 필요해요.',
+      description: '높은 수익률을 목표로 하며 손실에 대한 내성도 강하시네요.<br/>이미 <span class="cSecondary">투자에 대한 지식과 경험이 풍부</span>해서 시장 흐름을 빠르게 읽고, 과감한 의사결정을 하실 수 있는 기반이 되어 있습니다.<br/>수익률 극대화를 위한 적극적 자산 운용을 추천드립니다. <span class="cSecondary">트렌드 기반의 테마 투자</span> 또는 <span class="cSecondary">글로벌 분산</span> 등을 활용하면서, <span class="cSecondary">리스크 헷징</span>과 <span class="cSecondary">종목 리밸런싱을 병행</span>하는 전략이 필요해요.',
       mentor: {
         name: '마크 모비우스',
         tag: '#신흥국 투자의 대부',
         image: 'profile_6.png',
-        quote: '내가 세계 곳곳의 신흥국 시장에 발을 들일 때가 생각나는군요. 정보도 적고, 정치적 불확실성도 커서 모두가 말렸죠. <br/>하지만 나는 그 리스크 속에 숨겨진 기회를 보았고, 직접<br/>현장에 뛰어 들어 하나하나 확인해보고 분석했던 기억이 나는군요. <span class="underline">두려움이 있는 곳에 기회가 있고, 행동하는 자에게 수익이 따릅니다.</span> 그러나 그 <span class="underline">행동은 반드시 지식과 분석, 그리고 준비된 태도 위에 있어야 합니다.</span>'
+        quote: '내가 세계 곳곳의 신흥국 시장에 발을 들일 때가 생각나는군요. 정보도 적고, 정치적 불확실성도 커서 모두가 말렸죠. <br/>하지만 나는 그 리스크 속에 숨겨진 기회를 보았고, 직접<br/>현장에 뛰어 들어 하나하나 확인해보고 분석했던 기억이 나는군요. <span class="underline">두려움이 있는 곳에 기회가 있고, 행동하는 자에게 수익이 따릅니다.</span> 그러나 그 행동은 반드시 <span class="underline">지식과 분석, 그리고 준비된 태도 위에 있어야 합니다.</span>'
       }
     }
   },
@@ -369,8 +369,8 @@ const CONFIG = {
       title: '오마하의 현인',
       subtitle: '장기투자의 신',
       image: 'profile_3_b.png',
-      content: "내가 코카콜라를 샀을 때도, 당장 오르길 기대하지 않았지. 하지만<br/>난 이 회사를 10년 후에도 사랑할 자신이 있었네. <br/>좋은 회사를 좋은 가격에 사서 오래 들고 가는 것, 그게 가장 안전하고도 강한 전략이야.",
-      hashtags: "#오마하의 현인이자 장기투자자의 롤모델 #미국 청년들에게 가장 존경받는 투자자"
+      content: "내가 코카콜라를 샀을 때도, 당장 오르길 기대하지 않았지.<br/>하지만 난 이 회사를 10년 후에도 사랑할 자신이 있었네.<br/>좋은 회사를 좋은 가격에 사서 오래 들고 가는 것, 그게 가장 안전하고도 강한 전략이야.",
+      hashtags: "#오마하의 현인이자 장기투자자의 롤모델  #미국 청년들에게 가장 존경받는 투자자"
     },
     3: {
       name: '피터 린치',
@@ -401,8 +401,8 @@ const CONFIG = {
       title: '인덱스펀드의 창시자',
       subtitle: '월가의 성자',
       image: 'profile_2_b.png',
-      content: "복잡한 전략은 필요 없습니다. <br/>낮은 비용, 분산된 투자, 그리고 장기 보유가 핵심인 걸 잊지 마세요. <br/>너무 빠르게 수익을 추구하지 말고, 꾸준한 지출 통제와 함께 자동화된 투자 습관을 구축해야 합니다. <br/>이 습관은 지루하지만 강력한 전략이 될 것입니다.",
-      hashtags: "#인덱스 펀드 창시자 #월가의 성자"
+      content: "복잡한 전략은 필요 없습니다. <br/>낮은 비용, 분산된 투자, 그리고 장기 보유가 핵심인 걸 잊지 마세요. <br/>너무 빠르게 수익을 추구하지 말고, 꾸준한 지출 통제와 함께 자동화된<br/>투자 습관을 구축해야 합니다.<br/>이 습관은 지루하지만 강력한 전략이 될 것입니다.",
+      hashtags: "#인덱스 펀드 창시자  #월가의 성자"
     },    
     7: {
       name: '피터 린치',
@@ -418,7 +418,7 @@ const CONFIG = {
       title: '신흥국 투자의 대부',
       subtitle: '글로벌 투자의 개척자',
       image: 'profile_6_b.png',
-      content: "내가 세계 곳곳의 신흥국 시장에 발을 들일 때가 생각나는군요. <br/>정보도 적고, 정치적 불확실성도 커서 모두가 말렸죠. 하지만 나는 그 리스크 속에 숨겨진 기회를 보았고,<br/> 직접 현장에 뛰어 들어 하나하나 확인해보고 분석했던 기억이 나는군요. <br/>두려움이 있는 곳에 기회가 있고, 행동하는 자에게 수익이 따릅니다. <br/>그러나 그 행동은 반드시 지식과 분석, 그리고 준비된 태도 위에 있어야 합니다.",
+      content: "내가 세계 곳곳의 신흥국 시장에 발을 들일 때가 생각나는군요. <br/>정보도 적고, 정치적 불확실성도 커서 모두가 말렸죠.<br/>하지만 나는 그 리스크 속에 숨겨진 기회를 보았고, 직접 현장에 뛰어 들어 하나하나 확인해보고 분석했던 기억이 나는군요. 두려움이 있는 곳에 기회가 있고, 행동하는 자에게 수익이 따릅니다. 그러나 그 행동은 반드시 지식과 분석, 그리고 준비된 태도 위에 있어야 합니다.",
       hashtags: "#신흥국 투자의 대부"
     }
   }

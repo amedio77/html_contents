@@ -5,11 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/global.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/style.css?v=0.2">
   <link rel="stylesheet" href="./css/style_spa.css">
+    <!-- 기존 head 내용 -->
+    <style>
+      /* 텍스트 선택 방지 */
+      * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        /* iOS 길게 누르기 메뉴 방지 */
+        -webkit-touch-callout: none;
+
+        /* 터치 하이라이트 제거 */
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* 이미지 드래그 방지 */
+      img {
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+      }
+
+      /* 링크 길게 누르기 방지 */
+      a {
+        -webkit-touch-callout: none;
+      }
+    </style>
   <title>투자성향 진단 테스트</title>
 </head>
 <body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        // 1. 오른쪽 클릭 메뉴 방지
+        document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+          return false;
+        });
+
+        // 2. 텍스트 선택 방지
+        document.addEventListener('selectstart', function(e) {
+          e.preventDefault();
+          return false;
+        });
+
+        // 3. 드래그 시작 방지
+        document.addEventListener('dragstart', function(e) {
+          e.preventDefault();
+          return false;
+        });
+
+        // 4. 터치 길게 누르기 방지 (모바일/터치스크린)
+        let touchTimer;
+        document.addEventListener('touchstart', function(e) {
+          touchTimer = setTimeout(function() {
+            e.preventDefault();
+          }, 500);
+        });
+
+        document.addEventListener('touchend', function() {
+          clearTimeout(touchTimer);
+        });
+
+        document.addEventListener('touchmove', function() {
+          clearTimeout(touchTimer);
+        });
+
+        // 5. 이미지 저장 메뉴 방지
+        const images = document.getElementsByTagName('img');
+        for(let img of images) {
+          img.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+          });
+        }
+
+      });
+    </script>  
   <!-- 음향 컨트롤 UI -->
   <div id="audio-controls">
     <button id="audio-toggle" onclick="audioManager.toggle()" title="음향 켜기/끄기">🔊</button>

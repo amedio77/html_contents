@@ -28,6 +28,16 @@
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     }
     
+    /* ==================== Responsive Font Sizes ==================== */
+    :root {
+      --fs-main-title: clamp(40px, 4.2vw, 90px);
+      --fs-sub-title: clamp(30px, 2.8vw, 60px);
+      --fs-card-title: clamp(50px, 3.7vw, 80px);
+      --fs-card-year: clamp(25px, 2.1vw, 45px);
+      --padding-section: clamp(80px, 7vw, 150px);
+      --padding-card: clamp(30px, 2.8vw, 60px);
+    }
+    
     /* ==================== 4K UHD 세로형 (2160×3840) 최적화 ==================== */
     .app-container {
       width: 100%;
@@ -370,73 +380,98 @@
     @media screen and (min-width: 2160px) and (min-height: 3840px) and (orientation: portrait) {
       .app-container {
         width: 2160px;
-        height: 3840px;
+        height: 100vh;
+        max-height: 3840px;
       }
       
-      .intro_dir {
-        padding: 200px 600px 200px 250px;
+      .intro_wrap {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
+      
+      .intro_content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* .intro_dir {
+        padding: 150px 400px 150px 200px;
+        flex-shrink: 0;
+        min-height: 25vh;
+      } */
       
       .intro_dir p.h_02cDGray {
-        font-size: 120px;
+        font-size: 70px;
         line-height: 1.4;
       }
       
       .intro_dir p.tbtn_01cDGray {
-        font-size: 80px;
+        font-size: 90px;
         margin-top: 40px;
       }
       
       .icon_direction {
-        width: 500px;
-        height: 500px;
-        right: 250px;
+        width: 400px;
+        height: 400px;
+        right: 3px;
       }
       
       .intro_bottom {
-        padding-bottom: 500px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 200px;
+        background: url(./images/bg_bottom.png) center bottom no-repeat;
+        background-size: contain;
+        min-height: 0;
       }
       
       .intro_bottom ul {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        grid-template-rows: repeat(2, 1fr) !important;
-        height: 1400px !important;
-        max-height: none !important;
-        grid-gap: 0 !important;
-        grid-auto-flow: row !important;
-        overflow: visible !important;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        height: calc(100% - 200px);
+        grid-gap: 0;
+        flex: 0 1 auto;
       }
       
       .intro_bottom li {
-        min-height: 700px !important;
-        max-height: 700px !important;
-        height: 700px !important;
-        padding: 100px;
-        box-sizing: border-box !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px 60px;
+        box-sizing: border-box;
+        min-height: 0;
+        position: relative;
       }
       
       .intro_bottom li p {
-        font-size: 140px;
-        line-height: 160px;
+        font-size: 80px;
+        line-height: 100px;
+        margin-bottom: auto;
       }
       
       .intro_bottom li span {
-        font-size: 70px;
-        bottom: 100px;
-        right: 100px;
+        font-size: 45px;
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: auto;
+        align-self: flex-end;
       }
       
       .intro_bottom li [class^="icon"] {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
       }
       
       .btn_home {
-        width: 350px;
-        height: 350px;
-        top: 200px;
-        right: 250px;
+        width: 280px;
+        height: 280px;
+        top: 150px;
+        right: 200px;
       }
       
       .popup {
@@ -446,12 +481,12 @@
       }
       
       .popup .h_02 {
-        font-size: 100px;
+        font-size: 80px;
       }
       
       .popup_footer button {
-        height: 150px;
-        font-size: 60px;
+        height: 120px;
+        font-size: 50px;
       }
       
       .popup .close_btn {
