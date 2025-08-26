@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>MP4 구간 점프 테스트</title>
+</head>
+<body>
+  <h1>MP4 구간 점프 테스트</h1>
+  <video id="video" src="mp4/01.mp4" width="480" controls></video>
+  <br><br>
+  <button onclick="jumpTo(10)">⏩ 10초로 이동</button>
+  <button onclick="jumpTo(30)">⏩ 30초로 이동</button>
+  <button onclick="jumpTo(60)">⏩ 1분으로 이동</button>
+
+  <script>
+    const video = document.getElementById("video");
+    function jumpTo(sec) {
+      video.currentTime = sec;
+      video.play();
+    }
+  </script>
+</body>
+</html>
